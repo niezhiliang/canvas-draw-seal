@@ -257,6 +257,116 @@ var FXQ = {
         //返回图片base64
         return canvas.toDataURL();
     },
+    //椭圆签章
+    companyEllipse: function (bool,company,fType,cType) {
+        this.commonMethod(cType,fType);
+        var color = FXQ.baseConf.color;
+        var font = FXQ.baseConf.font;
+
+        var canvas = document.getElementById("canvas");
+        var  ctx=canvas.getContext('2d');
+        canvas.width = 270;
+        canvas.height = 250;
+
+        var eRadiusX = 123;
+        var eRadiusY = 80;
+
+        //不多加一个字位置不对，这里临时处理一下
+        company += '哈';
+
+
+        //画椭圆
+        ctx.ellipse(135,125,132,eRadiusY,0,0,Math.PI*2);
+        ctx.fillStyle="rgba(255, 255, 255, 0)";
+        ctx.lineWidth=4
+        ctx.strokeStyle=color;
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.translate(125,145)
+        var radiusX = 123;
+        var radiusY = 75;
+        var minRat = 0.2;
+        //总角度
+        var totalArcAng = 180;
+        var startAng =  bool == true ? -90 - totalArcAng/2 : 90 -totalArcAng/2;
+        console.log(startAng)
+        //从边线想中心移动的因子
+        var step = 0.5;
+        var count = company.length;
+        var allCount =  Math.ceil(totalArcAng / step) +1;
+
+        var angArr = new Array(allCount);
+        var arcLenArr = new Array(allCount);
+
+        var num = 0;
+        var accArcLen = 0;
+        angArr[num] = startAng;
+        arcLenArr[num] = accArcLen;
+        num=num+1;
+
+        var angR = startAng * Math.PI / 180;
+        console.log(angR)
+        var lastX = radiusX * Math.cos(angR) +eRadiusX;
+        var lastY = radiusY * Math.sin(angR) +eRadiusY;
+
+        for (var i = startAng + step; num < allCount; i += step) {
+            angR = i * Math.PI / 180;
+
+            var x = radiusX * Math.cos(angR) + eRadiusX;
+            var y = radiusY * Math.sin(angR) + eRadiusY;
+            console.log("x:%s y: %s",x,y)
+            accArcLen += Math.sqrt((lastX-x) * (lastX-x) + (lastY - y)* (lastY-y));
+            angArr[num] = i;
+            arcLenArr[num] = accArcLen;
+            lastX = x;
+            lastY = y;
+            num = num + 1;
+        }
+
+        var arcPer = accArcLen / count;
+
+        for (var i = 0; i < count -1; i++ ) {
+            var arcL = i * arcPer + arcPer/2;
+            var ang = 0;
+
+            for (var p = 0; p < arcLenArr.length - 1; p++) {
+                if (arcLenArr[p] <= arcL && arcL <= arcLenArr[p + 1]) {
+                    ang = (arcL >= ((arcLenArr[p] + arcLenArr[p + 1]) /2 )) ? angArr[p + 1] : angArr[p];
+                    break;
+                }
+            }
+
+            angR = (ang * Math.PI / 180);
+            var x = radiusX * Math.cos(angR);
+            var y = radiusY * Math.sin(angR);
+            var qxang = Math.atan2(radiusY * Math.cos(angR),-radiusX * Math.sin(angR));
+            var fxang = qxang + Math.PI / 2;
+            var c = company[i]
+
+            var w = 20;
+            var h = 20;
+
+            x = x + h * minRat * Math.cos(fxang);
+            y = y + h * minRat * Math.sin(fxang);
+
+            x = x + w/2 * Math.cos(qxang);
+            y = y + w/2 * Math.sin(qxang)
+
+            console.log("c:%s x:%s y:%s",c,x,y)
+            ctx.fillStyle = color;
+            ctx.font = '20px '+ font;
+            ctx.fillText(c,x,y);
+            ctx.restore();
+
+           // ctx.textBaseline = 'middle';//设置文本的垂直对齐方式
+            //ctx.textAlign = 'center'; //设置文本的水平对对齐方式
+            ctx.lineWidth=1;
+            ctx.fillStyle = FXQ.baseConf.color;
+            ctx.font = '20px '+ font;
+            ctx.fillText('某某专用章',-35,20)
+        }
+    },
     /**
      * 字体换行
      * */
