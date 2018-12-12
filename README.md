@@ -1,3 +1,4 @@
+## **JavaScript 通过canvans来绘制签章，并返回生成图片的base64**
 
 ### **companyc1.png**
 
