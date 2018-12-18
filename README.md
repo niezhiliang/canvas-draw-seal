@@ -12,9 +12,9 @@
 
 ![](https://github.com/niezhiliang/canvas-draw-seal/blob/master/imgs/companyc2.png)
 
-### **companye1.png椭圆代码还在调**
+### **companye1.png**
 
-    FXQ.companyEllipse(true,'某某某网络集团有限公司',0,0)
+    FXQ.companyEllipse('某某某网络集团有限公司','1234567899876',0,0)
 
 ![](https://github.com/niezhiliang/canvas-draw-seal/blob/master/imgs/companye1.png)
 
@@ -44,7 +44,7 @@
 
 ### **personal1.png 三个字名字个人正方形带边框该签章只支持2-4个字的名字**
 
-      FXQ.personal("李易峰",0,1,1,0);
+    FXQ.personal("李易峰",0,1,1,0);
 
 ![](https://github.com/niezhiliang/canvas-draw-seal/blob/master/imgs/personal5.png)
 
