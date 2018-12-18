@@ -390,6 +390,9 @@ var FXQ = {
             context.fill();
             context.stroke();
         }
+
+        //返回图片base64
+        return canvas.toDataURL();
     },
     /**
      * 字体换行
