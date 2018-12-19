@@ -1,5 +1,7 @@
 ## **JavaScript 通过canvans来绘制签章，并返回生成图片的base64**
 
+## Java画签章项目:https://github.com/niezhiliang/signature-utils
+
 ### **companyc1.png**
 
     FXQ.companySeal('某某某网络集团有限公司',0,0,1,'1234xyz')
