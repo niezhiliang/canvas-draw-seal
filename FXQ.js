@@ -46,6 +46,8 @@ var FXQ = {
         var canvas = document.getElementById('canvas');
 
         var context = canvas.getContext('2d');
+        canvas.width = 300;
+        canvas.height = 300;
 
         this.commonMethod(cType,fType);
 
@@ -199,8 +201,8 @@ var FXQ = {
         //获取canvans doc对象
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
-        context.width = 112;
-        context.height = 112;
+        canvas.width = 120;
+        canvas.height = 60;
         var length = name.length;
         //长方形前面
         if (type == 0) {
@@ -268,6 +270,9 @@ var FXQ = {
         var font = FXQ.baseConf.font;
 
         var canvas = document.getElementById('canvas');
+
+        canvas.width = 300;
+        canvas.height = 300;
 
         canvas.width = 2 * radiusX + 5;
         canvas.height = 2 * radiusY + 5;
