@@ -43,7 +43,8 @@ var FXQ = {
     companySeal: function (company,cType,fType,sType,seaNo) {
 
         //获取canvans doc对象
-        var canvas = document.getElementById('canvas');
+       // var canvas = document.getElementById('canvas');
+        var canvas = document.createElement("canvas");
 
         var context = canvas.getContext('2d');
         canvas.width = 300;
@@ -199,10 +200,11 @@ var FXQ = {
         var color = FXQ.baseConf.color;
         var font = FXQ.baseConf.font;
         //获取canvans doc对象
-        var canvas = document.getElementById('canvas');
+        //var canvas = document.getElementById('canvas');
+        var canvas = document.createElement("canvas");
         var context = canvas.getContext('2d');
         canvas.width = 120;
-        canvas.height = 60;
+        canvas.height = 120;
         var length = name.length;
         //长方形前面
         if (type == 0) {
@@ -269,7 +271,8 @@ var FXQ = {
         var color = FXQ.baseConf.color;
         var font = FXQ.baseConf.font;
 
-        var canvas = document.getElementById('canvas');
+        //var canvas = document.getElementById('canvas');
+        var canvas = document.createElement("canvas");
 
         canvas.width = 300;
         canvas.height = 300;
